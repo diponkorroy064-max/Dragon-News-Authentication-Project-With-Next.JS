@@ -33,7 +33,8 @@ const RegisterPage = () => {
             image: photo, // required
             callbackURL: "/",
         });
-        console.log("signup response", res, error);
+        // console.log("signup response", res, error);
+
         if (error) {
             // alert("Registration failed: " + error.message);
             toast.error("Registration failed: " + error.message);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 
 const LoginPage = () => {
@@ -30,7 +31,16 @@ const LoginPage = () => {
             rememberMe: true,
             callbackURL: "/",
         });
-        console.log("login response", res, error);
+        // console.log("login response", res, error);
+
+        if (error) {
+            // alert("Registration failed: " + error.message);
+            toast.error("Login failed: " + error.message);
+        }
+        else if (res) {
+            // alert("Registration successful! Please check your email to verify your account.");
+            toast.success("Login successful!");
+        }
     };
 
 
@@ -55,7 +65,7 @@ const LoginPage = () => {
                             className="input"
                             placeholder="Enter your Password" {...register("password", { required: true })} />
 
-                        <span className="absolute right-2 top-7 cursor-pointer text-xl" onClick={() => setIsShowPassword(!isShowPassword)}>{isShowPassword ? <FaEyeSlash />: <FaEye/>}</span>
+                        <span className="absolute right-2 top-7 cursor-pointer text-xl" onClick={() => setIsShowPassword(!isShowPassword)}>{isShowPassword ? <FaEyeSlash /> : <FaEye />}</span>
                         {errors.password && <span className="text-red-500 text-[12px]">Password is required</span>}
                     </fieldset>
 
