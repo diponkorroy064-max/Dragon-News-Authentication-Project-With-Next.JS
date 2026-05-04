@@ -1,23 +1,50 @@
+'use client';
+import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 
 const LoginPage = () => {
+    const { register, handleSubmit, formState: { errors }, watch } = useForm(); 
+    console.log("form errors", errors);
+    console.log("form watch", watch("email"), watch("password"));
+
+    const loginHandler = (data) => {
+        // e.preventDefault();
+
+        // const email = e.target.email.value;
+        // const password = e.target.password.value;
+        // console.log("email", email);
+        // console.log('password', password);
+
+        console.log("form data", data);
+    };
+
+
     return (
-        <div className="container mx-auto flex flex-col justify-center items-center py-8">
+        <div className="container mx-auto flex flex-col justify-center items-center">
+         
+            <form onSubmit={handleSubmit(loginHandler)}>
 
-            <h2 className="text-2xl font-bold py-12">Login Here</h2>
+                <h2 className="text-2xl text-center font-bold py-4">Login your account</h2>
 
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                
-                {/* <legend className="text-2xl font-bold">Login</legend> */}
+                <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border px-4 py-8">
 
-                <label className="label">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                    <label className="label">Email</label>
+                    <input name="email" type="email" className="input" placeholder="Enter your Email Address" {...register("email", { required: true })} />
+                    {errors.email && <span className="text-red-500 text-[12px]">Email is required</span>}
 
-                <label className="label">Password</label>
-                <input type="password" className="input" placeholder="Password" />
+                    <label className="label">Password</label>
+                    <input name="password" type="password" className="input" placeholder="Enter your Password" {...register("password", { required: true })} />
+                    {errors.password && <span className="text-red-500 text-[12px]">Password is required</span>}
 
-                <button className="btn btn-neutral mt-4">Login</button>
-            </fieldset>
+                    <button className="btn btn-neutral mt-4">Login</button>
+
+                    <p className="text-sm text-center mt-4">
+                        Do not Have An Account ? <Link href="/register" className="text-red-500 hover:underline">Register</Link>
+                    </p>
+                </fieldset>
+            </form>
+
         </div>
     );
 };
