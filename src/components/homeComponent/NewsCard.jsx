@@ -35,7 +35,7 @@ const NewsCard = ({ singleNews }) => {
                 <Image src={singleNews.image_url} alt={singleNews.title} width={300} height={300} className="w-full"/>
             </figure>
 
-            <p className="text-[12px] line-clamp-3">{singleNews.details}</p>
+            <p className="text-[12px] line-clamp-2">{singleNews.details}</p>
 
             <div className="flex justify-between items-center gap-2">
                 <div className="flex items-center gap-2">

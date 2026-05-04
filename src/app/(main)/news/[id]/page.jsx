@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 
 
-
 const NewsDetailsPage = async ({ params }) => {
     // console.log("news id from url", params);
     const { id } = await params;
